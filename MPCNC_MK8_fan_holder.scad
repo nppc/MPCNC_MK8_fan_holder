@@ -4,6 +4,10 @@ $fn=50;
 main_frame();
 bolt_tighter();
 
+translate([43,-20,0])rotate([0,-90,0])ductedfan();
+
+translate([-45,-20,-40])rotate([0,90,0])ductedfan();
+
 module main_frame(){
 
     difference(){
@@ -43,4 +47,31 @@ module bolt_tighter(){
     
         translate([0,6,9])rotate([0,90,0])cylinder(d=4.5,h=20,center=true);
     }
+}
+
+module ductedfan(){
+    color("DARKGRAY")difference(){
+        union(){
+                translate([-51/2,51/2+2,0]){
+                translate([-1.5,0,0]){
+                    difference(){
+                        scale([1.06,1,1])cylinder(d=51,h=15);
+                        translate([0,0,-1])cylinder(d=30,h=3);
+                    }   
+                }
+                translate([5.5,-27.5,0])cube([20,27.5,15]);
+            }
+            
+            hull(){
+                translate([-47,7,0])cylinder(d=6,h=15);
+                translate([-4,45,0])cylinder(d=6,h=15);
+            }
+        }
+
+        translate([-47,7,-1])cylinder(d=4,h=20);
+        translate([-4,45,-1])cylinder(d=4,h=20);
+        
+        translate([-20+(20-17.5)/2,-1,(15-12.5)/2])cube([17.5,10,12.5]);
+    }   
+    
 }
